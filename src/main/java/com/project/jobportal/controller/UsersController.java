@@ -45,7 +45,7 @@ public class UsersController {
             return "register";
         }
 
-        usersService.addNew(user);
+        Users savedUser = usersService.addNew(user);
         return "redirect:/register/new";
     }
 
