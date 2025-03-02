@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -23,12 +24,15 @@ public class Users {
 
     private boolean isActive;
 
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date registrationDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_type_id", referencedColumnName = "user_type_id")
     private UsersType usersType;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postedBy", targetEntity = JobPostActivity.class)
+    private List<JobPostActivity> jobPostActivities;
 
     public Users() {
     }

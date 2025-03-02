@@ -273,3 +273,28 @@ CREATE TABLE skills (
     job_seeker_profile INT,
     CONSTRAINT fk_skills_profile FOREIGN KEY (job_seeker_profile) REFERENCES job_seeker_profile (user_account_id)
 );
+
+
+
+
+
+
+
+
+
+
+TRUNCATE TABLE job_seeker_save, job_seeker_apply, skills, job_post_activity, recruiter_profile, job_seeker_profile, job_location, job_company, users RESTART IDENTITY CASCADE;
+
+
+
+
+
+
+SELECT * FROM users;
+SELECT * FROM job_post_activity;
+SELECT * FROM job_location;
+SELECT * FROM job_company;
+
+
+
+
