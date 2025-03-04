@@ -12,7 +12,7 @@ public class JobPostActivity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int jobPostId;
+    private Integer jobPostId;
 
     @Length(max = 10000)
     private String descriptionOfJob;
@@ -26,15 +26,15 @@ public class JobPostActivity {
     private String remote;
     private String salary;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne
     @JoinColumn(name = "posted_by_id", referencedColumnName = "user_id")
     private Users postedBy;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_location_id", referencedColumnName = "id")
     private JobLocation jobLocation;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_company_id", referencedColumnName = "id")
     private JobCompany jobCompany;
 
@@ -47,7 +47,7 @@ public class JobPostActivity {
     public JobPostActivity() {
     }
 
-    public JobPostActivity(int jobPostId, String descriptionOfJob, String jobTitle, String jobType, Date postedDate, String remote, String salary, Users postedBy, JobLocation jobLocation, JobCompany jobCompany, boolean isActive, boolean isSaved) {
+    public JobPostActivity(Integer jobPostId, String descriptionOfJob, String jobTitle, String jobType, Date postedDate, String remote, String salary, Users postedBy, JobLocation jobLocation, JobCompany jobCompany, boolean isActive, boolean isSaved) {
         this.jobPostId = jobPostId;
         this.descriptionOfJob = descriptionOfJob;
         this.jobTitle = jobTitle;
@@ -62,11 +62,11 @@ public class JobPostActivity {
         this.isSaved = isSaved;
     }
 
-    public int getJobPostId() {
+    public Integer getJobPostId() {
         return jobPostId;
     }
 
-    public void setJobPostId(int jobPostId) {
+    public void setJobPostId(Integer jobPostId) {
         this.jobPostId = jobPostId;
     }
 
@@ -142,19 +142,19 @@ public class JobPostActivity {
         this.jobCompany = jobCompany;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setIsActive(boolean active) {
         isActive = active;
     }
 
-    public boolean isSaved() {
+    public boolean getIsSaved() {
         return isSaved;
     }
 
-    public void setSaved(boolean saved) {
+    public void setIsSaved(boolean saved) {
         isSaved = saved;
     }
 
