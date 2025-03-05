@@ -286,17 +286,32 @@ CREATE TABLE skills (
 TRUNCATE TABLE job_seeker_save, job_seeker_apply, skills, job_post_activity, recruiter_profile, job_seeker_profile, 
 job_location, job_company, users RESTART IDENTITY CASCADE;
 
-TRUNCATE TABLE skills RESTART IDENTITY CASCADE
+TRUNCATE TABLE job_seeker_apply RESTART IDENTITY CASCADE
 
 
 
 
 SELECT * FROM users;
+SELECT * FROM users_type;
 SELECT * FROM job_post_activity;
 SELECT * FROM job_location;
 SELECT * FROM job_company;
 SELECT * FROM job_seeker_profile;
+SELECT * FROM job_seeker_apply;
+SELECT * FROM job_seeker_save;
 SELECT * FROM skills;
+
+
+
+
+
+
+SELECT * FROM users u join users_type t on u.user_type_id = t.user_type_id
+
+
+
+
+
 
 
 

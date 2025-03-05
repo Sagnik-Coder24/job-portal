@@ -45,7 +45,7 @@
 
             <div class="row">
                 <div class="col-md-4 form-group">
-                    <select id="type" th:field="*{jobType}" class="form-control">
+                    <select id="type" th:field="*{jobType}" class="form-control" required>
                         <option value="">Employment Type</option>
                         <option th:value="Full-Time">Full-Time</option>
                         <option th:value="Part-Time">Part-Time</option>
@@ -54,7 +54,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 form-group">
-                    <select id="remote" th:field="*{remote}" class="form-control">
+                    <select id="remote" th:field="*{remote}" class="form-control required">
                         <option value="">Select a Remote</option>
                         <option th:value="Remote-Only">Remote-Only</option>
                         <option th:value="Office-Only">Office-Only</option>

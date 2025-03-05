@@ -5,7 +5,13 @@ import com.project.jobportal.entity.Skills;
 import com.project.jobportal.entity.Users;
 import com.project.jobportal.repository.UsersRepository;
 import com.project.jobportal.services.JobSeekerProfileService;
+import com.project.jobportal.util.FileDownloadUtil;
 import com.project.jobportal.util.FileUploadUtil;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -106,4 +112,56 @@ public class JobSeekerProfileController {
 
         return "redirect:/dashboard";
     }
+
+    @GetMapping("/{id}")
+    public String candidateProfile(@PathVariable("id") int id, Model model) {
+
+        Optional<JobSeekerProfile> seekerProfile = jobSeekerProfileService.getOne(id);
+        seekerProfile.ifPresent(jobSeekerProfile -> model.addAttribute("profile", jobSeekerProfile));
+
+        return "job-seeker-profile";
+    }
+
+    @GetMapping("/downloadResume")
+    public ResponseEntity<?> downloadResume(@RequestParam("fileName") String fileName, @RequestParam("userID") String userID) {
+
+        Resource resource = null;
+        try {
+            resource = FileDownloadUtil.getFileAsResource("photos/candidate/" + userID + "/", fileName);
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        if (resource == null) {
+            return new ResponseEntity<>("File not found", HttpStatus.NOT_FOUND);
+        }
+
+        String contentType = "application/octet-stream";
+        String headerValue = "attachment; filename=\"" + resource.getFilename() + "\"";
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, headerValue)
+                .body(resource);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

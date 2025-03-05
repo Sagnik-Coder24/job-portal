@@ -53,9 +53,15 @@ public class JobPostActivityService {
 
     public List<JobPostActivity> search(String job, String location, List<String> type, List<String> remote, LocalDate searchDate) {
 
+        System.out.println(job + " | " + location + " | " + type + " | " + remote + " | " + searchDate);
+
 //        type = type.stream().filter(Objects::nonNull).toList();
 //        remote = remote.stream().filter(Objects::nonNull).toList();
 
-        return jobPostActivityRepository.searchWithoutDate(job, location, type, remote);
+        if (searchDate == null) {
+            return jobPostActivityRepository.searchWithoutDate(job, location, type, remote);
+        } else {
+            return jobPostActivityRepository.search(job, location, type, remote, searchDate);
+        }
     }
 }

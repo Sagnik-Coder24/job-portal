@@ -77,6 +77,10 @@ public class UsersService {
             String username = authentication.getName();
             return usersRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Could not find user with email: " + username));
         }
-        return  null;
+        return null;
+    }
+
+    public Users findByEmail(String username) {
+        return usersRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Could not find user with email: " + username));
     }
 }
