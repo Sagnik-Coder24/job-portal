@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="height: 100%">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="height: 100%">
 <head>
     <meta charset="UTF-8"/>
     <title>Candidate Dashboard</title>
@@ -101,7 +102,7 @@
             <div class="ms-3">
                 <h4 th:text="${jobDetails.jobTitle}" class="job-title text-left">Software Engineer</h4>
                 <div class="mt-1">
-                    <p th:text="${jobDetails.jobLocation.city+', '+ jobDetails.jobLocation.state}"
+                    <p th:text="${jobDetails.jobLocation.city + ', '+ jobDetails.jobLocation.state + '( ' + jobDetails.jobLocation.country + ' )'}"
                        class="m-0"> California, USA</p>
                     <p th:text="${jobDetails.jobCompany.name}">Company</p>
                 </div>

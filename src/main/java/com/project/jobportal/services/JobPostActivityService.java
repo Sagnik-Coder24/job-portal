@@ -15,9 +15,13 @@ import java.util.stream.Collectors;
 public class JobPostActivityService {
 
     private final JobPostActivityRepository jobPostActivityRepository;
+    private final JobSeekerApplyService jobSeekerApplyService;
+    private final JobSeekerSaveService jobSeekerSaveService;
 
-    public JobPostActivityService(JobPostActivityRepository jobPostActivityRepository1) {
+    public JobPostActivityService(JobPostActivityRepository jobPostActivityRepository1, JobSeekerApplyService jobSeekerApplyService, JobSeekerSaveService jobSeekerSaveService) {
         this.jobPostActivityRepository = jobPostActivityRepository1;
+        this.jobSeekerApplyService = jobSeekerApplyService;
+        this.jobSeekerSaveService = jobSeekerSaveService;
     }
 
     public JobPostActivity addNew(JobPostActivity jobPostActivity) {
@@ -63,5 +67,9 @@ public class JobPostActivityService {
         } else {
             return jobPostActivityRepository.search(job, location, type, remote, searchDate);
         }
+    }
+
+    public void deleteAJob(int id) {
+        jobPostActivityRepository.deleteById(id);
     }
 }

@@ -16,10 +16,8 @@ public class JobSeekerApply implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // TODO : reference not working
-
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_account_id")
     private JobSeekerProfile userId;
 
     @ManyToOne(cascade = CascadeType.ALL)

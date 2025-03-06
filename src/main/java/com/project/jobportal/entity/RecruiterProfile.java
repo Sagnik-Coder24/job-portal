@@ -22,8 +22,6 @@ public class RecruiterProfile {
     private String state;
     private String country;
     private String company;
-
-    @Column(length = 64)
     private String profilePhoto;
 
     public RecruiterProfile() {
@@ -119,7 +117,7 @@ public class RecruiterProfile {
 
     @Transient
     public String getPhotosImagePath() {
-        if (profilePhoto == null) {
+        if (profilePhoto == null || profilePhoto.isEmpty()) {
             return null;
         }
         return "/photos/recruiter/" + userAccountId + "/" + profilePhoto;

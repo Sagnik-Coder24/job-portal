@@ -25,8 +25,6 @@ public class JobSeekerProfile {
     private String workAuthorization;
     private String employmentType;
     private String resume;
-
-    @Column(length = 64)
     private String profilePhoto;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "jobSeekerProfile", targetEntity = Skills.class)
@@ -37,6 +35,7 @@ public class JobSeekerProfile {
 
     public JobSeekerProfile(Users useId) {
         this.userId = useId;
+        this.resume = "";
     }
 
     public JobSeekerProfile(Integer userAccountId, Users useId, String firstName, String lastName, String city, String state, String country, String workAuthorization, String employmentType, String resume, String profilePhoto, List<Skills> skills) {

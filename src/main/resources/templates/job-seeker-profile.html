@@ -49,9 +49,14 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div>
+                        <div sec:authorize="hasAuthority('Job Seeker')">
                             <h2 class="heading_font d-flex justify-content-center">
                                 Set up your Profile
+                            </h2>
+                        </div>
+                        <div sec:authorize="hasAuthority('Recruiter')">
+                            <h2 class="heading_font d-flex justify-content-center">
+                                Check the details below
                             </h2>
                         </div>
                     </div>
@@ -74,6 +79,7 @@
                                         name="firstName"
                                         type="text"
                                         class="form-control"
+                                        required
                                 />
                             </div>
                             <div class="col-md-6 pl-1">

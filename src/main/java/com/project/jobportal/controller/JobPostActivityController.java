@@ -179,6 +179,14 @@ public class JobPostActivityController {
         return "add-jobs";
     }
 
+    @PostMapping("/dashboard/deleteJob/{id}")
+    public String deleteJob(@PathVariable("id") int id) {
+
+        jobPostActivityService.deleteAJob(id);
+
+        return "redirect:/dashboard";
+    }
+
     @GetMapping("/global-search")
     public String globalSearch(
             Model model,
@@ -250,8 +258,6 @@ public class JobPostActivityController {
 
         return "global-search";
     }
-
-    //TODO: Delete a job - recruiter
 }
 
 

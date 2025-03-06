@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 50px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            background-color: #3498db;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #2980b9;
+        }
+
+        .error-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            max-width: 500px;
+            width: 100%;
+            margin-top: 50px;
+        }
+
+        .error-icon {
+            font-size: 60px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        .error-container p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 30px;
+            }
+            .error-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="error-container">
+    <div class="error-icon">⚠️</div>
+
+    <h1>Oops, an ERROR occurred.</h1>
+    <h2 th:text="${msg}">Error Message</h2>
+
+    <p>We apologize for the inconvenience. Please try again later or go back to the dashboard.</p>
+
+    <a th:href="@{/dashboard}">Go Back to Dashboard</a>
+</div>
+
+</body>
+</html>

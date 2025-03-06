@@ -1,4 +1,4 @@
-DROP DATABASE  IF EXISTS `jobportal`;
+DROP DATABASE  IF EXISTS jobportal;
 CREATE DATABASE `jobportal`;
 USE `jobportal`;
 
@@ -220,7 +220,7 @@ CREATE TABLE recruiter_profile (
     country VARCHAR(255),
     first_name VARCHAR(255),
     last_name VARCHAR(255),
-    profile_photo VARCHAR(64),
+    profile_photo VARCHAR(255),
     state VARCHAR(255),
     CONSTRAINT fk_recruiter_account_id FOREIGN KEY (user_account_id) REFERENCES users (user_id)
 );
@@ -296,6 +296,7 @@ SELECT * FROM users_type;
 SELECT * FROM job_post_activity;
 SELECT * FROM job_location;
 SELECT * FROM job_company;
+SELECT * FROM recruiter_profile;
 SELECT * FROM job_seeker_profile;
 SELECT * FROM job_seeker_apply;
 SELECT * FROM job_seeker_save;

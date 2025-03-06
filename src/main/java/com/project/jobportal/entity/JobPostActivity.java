@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "job_post_activity")
@@ -38,6 +39,12 @@ public class JobPostActivity {
     @JoinColumn(name = "job_company_id", referencedColumnName = "id")
     private JobCompany jobCompany;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "job")
+    private List<JobSeekerApply> jobSeekerApplyList;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "job")
+    private List<JobSeekerSave> jobSeekerSaveList;
+
     @Transient
     private boolean isActive;
 
@@ -47,7 +54,7 @@ public class JobPostActivity {
     public JobPostActivity() {
     }
 
-    public JobPostActivity(Integer jobPostId, String descriptionOfJob, String jobTitle, String jobType, Date postedDate, String remote, String salary, Users postedBy, JobLocation jobLocation, JobCompany jobCompany, boolean isActive, boolean isSaved) {
+    public JobPostActivity(Integer jobPostId, String descriptionOfJob, String jobTitle, String jobType, Date postedDate, String remote, String salary, Users postedBy, JobLocation jobLocation, JobCompany jobCompany, List<JobSeekerApply> jobSeekerApplyList, List<JobSeekerSave> jobSeekerSaveList, boolean isActive, boolean isSaved) {
         this.jobPostId = jobPostId;
         this.descriptionOfJob = descriptionOfJob;
         this.jobTitle = jobTitle;
@@ -58,6 +65,8 @@ public class JobPostActivity {
         this.postedBy = postedBy;
         this.jobLocation = jobLocation;
         this.jobCompany = jobCompany;
+        this.jobSeekerApplyList = jobSeekerApplyList;
+        this.jobSeekerSaveList = jobSeekerSaveList;
         this.isActive = isActive;
         this.isSaved = isSaved;
     }
@@ -140,6 +149,22 @@ public class JobPostActivity {
 
     public void setJobCompany(JobCompany jobCompany) {
         this.jobCompany = jobCompany;
+    }
+
+    public List<JobSeekerApply> getJobSeekerApplyList() {
+        return jobSeekerApplyList;
+    }
+
+    public void setJobSeekerApplyList(List<JobSeekerApply> jobSeekerApplyList) {
+        this.jobSeekerApplyList = jobSeekerApplyList;
+    }
+
+    public List<JobSeekerSave> getJobSeekerSaveList() {
+        return jobSeekerSaveList;
+    }
+
+    public void setJobSeekerSaveList(List<JobSeekerSave> jobSeekerSaveList) {
+        this.jobSeekerSaveList = jobSeekerSaveList;
     }
 
     public boolean getIsActive() {
